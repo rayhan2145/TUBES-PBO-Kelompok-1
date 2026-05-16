@@ -8,6 +8,26 @@ package models;
  *
  * @author A
  */
-public class User {
+public abstract class User {
+    protected String idUser;
+    protected String username;
+    protected String password;
     
+    public void registrasi(){
+        
+    }
+    
+    public void login(){
+        
+    }
+    
+    public void editUser(){
+        
+    }
+    
+    public void logout(){
+        
+    }
+    
+    public abstract void viewLaporan();
 }

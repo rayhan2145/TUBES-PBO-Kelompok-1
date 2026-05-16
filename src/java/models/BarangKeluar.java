@@ -8,6 +8,6 @@ package models;
  *
  * @author zidane mardico1178
  */
-public class BarangKeluar {
+public class BarangKeluar extends Transaksi{
     
 }

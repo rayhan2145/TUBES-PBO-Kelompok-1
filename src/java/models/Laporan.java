@@ -4,10 +4,13 @@
  */
 package models;
 
+import java.util.Date;
+
 /**
  *
  * @author zidane mardico1178
  */
 public class Laporan {
-    
+    private String idLaporan;
+    private Date tanggal;
 }

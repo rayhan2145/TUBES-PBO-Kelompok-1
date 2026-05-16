@@ -9,5 +9,8 @@ package models;
  * @author zidane mardico1178
  */
 public class Barang {
-    
+    private String idBarang;
+    private String namaBarang;
+    private int stok;
+    private Kategori kategori;
 }

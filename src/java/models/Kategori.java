@@ -9,5 +9,6 @@ package models;
  * @author zidane mardico1178
  */
 public class Kategori {
-    
+    private String idKategori;
+    private String namaKategori;
 }

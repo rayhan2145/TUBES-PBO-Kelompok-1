@@ -4,10 +4,15 @@
  */
 package models;
 
+import java.util.Date;
+
 /**
  *
  * @author zidane mardico1178
  */
 public class Transaksi {
-    
+    private String idTransaksi;
+    private Date tanggal;
+    private int jumlah;
+    private Barang barang;
 }

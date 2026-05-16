@@ -8,6 +8,6 @@ package models;
  *
  * @author zidane mardico1178
  */
-public class Supervisor {
+public class Supervisor extends User{
     
 }

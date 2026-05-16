@@ -8,6 +8,5 @@ package models;
  *
  * @author zidane mardico1178
  */
-public class Admin {
-    
+public class Admin extends User{
 }
