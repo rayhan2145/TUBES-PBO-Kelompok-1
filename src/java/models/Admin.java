@@ -9,4 +9,8 @@ package models;
  * @author zidane mardico1178
  */
 public class Admin extends User{
+
+    public void viewLaporan() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -1,33 +1,63 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
-/**
- *
- * @author A
- */
-public abstract class User {
+import java.sql.ResultSet;
+
+public class User extends dbConnect<User> {
+
     protected String idUser;
     protected String username;
     protected String password;
-    
-    public void registrasi(){
-        
+
+    public User() {
+        this.table = "user";
+        this.primaryKey = "idUser";
     }
-    
-    public void login(){
-        
+
+    public User(String idUser, String username, String password) {
+        this.table = "user";
+        this.primaryKey = "idUser";
+        this.idUser = idUser;
+        this.username = username;
+        this.password = password;
     }
-    
-    public void editUser(){
-        
+
+    @Override
+    User toModel(ResultSet rs) {
+        try {
+            User u = new User();
+            u.idUser = rs.getString("idUser");
+            u.username = rs.getString("username");
+            u.password = rs.getString("password");
+            return u;
+        } catch (Exception e) {
+            return null;
+        }
     }
-    
-    public void logout(){
-        
+
+    public void registrasi() {
+        insert();
     }
-    
-    public abstract void viewLaporan();
+
+    public void editUser() {
+        update();
+    }
+
+    public User login(String username, String password) {
+        where("username = '" + username + "' AND password = '" + password + "'");
+        if (get().size() > 0) {
+            return get().get(0);
+        }
+        return null;
+    }
+
+    public void logout() {
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 }

@@ -38,7 +38,7 @@ public abstract class dbConnect<E> implements Serializable{
     private String otherQuery = "";
 
     private void connect() {
-        String db_name = "example";
+        String db_name = "inventaris";
         String username = "root";
         String password = "";
         try {
