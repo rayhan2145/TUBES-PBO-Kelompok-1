@@ -4,21 +4,23 @@ import java.sql.ResultSet;
 
 public class User extends dbConnect<User> {
 
-    protected String idUser;
-    protected String username;
-    protected String password;
+    private String idUser;
+    private String username;
+    private String password;
+    private String role;
 
     public User() {
-        this.table = "user";
+        this.table = "users";
         this.primaryKey = "idUser";
     }
 
     public User(String idUser, String username, String password) {
-        this.table = "user";
+        this.table = "users";
         this.primaryKey = "idUser";
         this.idUser = idUser;
         this.username = username;
         this.password = password;
+        this.role = "staff";
     }
 
     @Override
@@ -28,6 +30,7 @@ public class User extends dbConnect<User> {
             u.idUser = rs.getString("idUser");
             u.username = rs.getString("username");
             u.password = rs.getString("password");
+            u.role = rs.getString("role");
             return u;
         } catch (Exception e) {
             return null;
@@ -35,6 +38,7 @@ public class User extends dbConnect<User> {
     }
 
     public void registrasi() {
+        this.role = "staff";
         insert();
     }
 
@@ -59,5 +63,9 @@ public class User extends dbConnect<User> {
 
     public String getUsername() {
         return username;
+    }
+    
+    public String getMessage(){
+        return super.getMessage();
     }
 }

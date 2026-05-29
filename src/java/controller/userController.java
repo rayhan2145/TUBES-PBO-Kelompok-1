@@ -23,7 +23,7 @@ public class userController extends HttpServlet {
         }
 
         switch (aksi) {
-            case "registrasi":
+            case "regist":
                 registrasi(request, response);
                 break;
 
@@ -54,8 +54,9 @@ public class userController extends HttpServlet {
 
         User user = new User(idUser, username, password);
         user.registrasi();
+        System.out.println("Status Registrasi: " + user.getMessage());
+        response.sendRedirect(request.getContextPath() + "/pages/login_page.jsp");
 
-        response.sendRedirect("login.jsp");
     }
 
     private void login(HttpServletRequest request, HttpServletResponse response)
@@ -72,9 +73,9 @@ public class userController extends HttpServlet {
             session.setAttribute("idUser", user.getIdUser());
             session.setAttribute("username", user.getUsername());
 
-            response.sendRedirect("dashboard.jsp");
+            response.sendRedirect(request.getContextPath() + "/pages/dashboard_page.jsp");
         } else {
-            response.sendRedirect("login.jsp?error=1");
+            response.sendRedirect(request.getContextPath() + "/pages/login_page.jsp?error=1");
         }
     }
 
@@ -88,7 +89,7 @@ public class userController extends HttpServlet {
         User user = new User(idUser, username, password);
         user.editUser();
 
-        response.sendRedirect("profile.jsp");
+        response.sendRedirect(request.getContextPath() + "/pages/profile_page.jsp");
     }
 
     private void logout(HttpServletRequest request, HttpServletResponse response)
@@ -97,7 +98,7 @@ public class userController extends HttpServlet {
         HttpSession session = request.getSession();
         session.invalidate();
 
-        response.sendRedirect("login.jsp");
+        response.sendRedirect(request.getContextPath() + "/pages/login_page.jsp");
     }
 
     @Override

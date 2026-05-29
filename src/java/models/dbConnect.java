@@ -79,7 +79,7 @@ public abstract class dbConnect<E> implements Serializable{
             for (Field field : this.getClass().getDeclaredFields()) {
                 field.setAccessible(true);
                 Object value = field.get(this);
-                if (value != null && !field.getName().equals(primaryKey)) {
+                if (value != null) {
                     cols += field.getName() + ", ";
                     values += "'" + value + "', ";
                 }
