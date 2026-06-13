@@ -38,12 +38,12 @@ public abstract class dbConnect<E> implements Serializable{
     private String otherQuery = "";
 
     private void connect() {
-        String db_name = "inventaris";
+        String db_name = "db_inventaris";
         String username = "root";
         String password = "";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + db_name, username, password);
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/" + db_name, username, password);
             stmt = con.createStatement();
 
          
