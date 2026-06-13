@@ -64,6 +64,9 @@ public class User extends dbConnect<User> {
     public String getUsername() {
         return username;
     }
+    public String getRole() {
+        return role;
+    }
     
     public String getMessage(){
         return super.getMessage();

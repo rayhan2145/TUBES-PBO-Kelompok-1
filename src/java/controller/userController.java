@@ -70,11 +70,13 @@ public class userController extends HttpServlet {
 
         if (user != null) {
             HttpSession session = request.getSession();
+
             session.setAttribute("idUser", user.getIdUser());
             session.setAttribute("username", user.getUsername());
+            session.setAttribute("role", user.getRole());
 
-            response.sendRedirect(request.getContextPath() + "/pages/dashboard_page.jsp");
-        } else {
+            response.sendRedirect(request.getContextPath() + "/DashboardController");
+           } else {
             response.sendRedirect(request.getContextPath() + "/pages/login_page.jsp?error=1");
         }
     }
