@@ -64,7 +64,7 @@ public class userController extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
+       
         User userModel = new User();
         User user = userModel.login(username, password);
 
@@ -76,7 +76,7 @@ public class userController extends HttpServlet {
             session.setAttribute("role", user.getRole());
 
             response.sendRedirect(request.getContextPath() + "/DashboardController");
-           } else {
+           } else {          
             response.sendRedirect(request.getContextPath() + "/pages/login_page.jsp?error=1");
         }
     }
