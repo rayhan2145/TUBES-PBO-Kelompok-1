@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="models.Dashboard"%>
 
+
 <%
 Dashboard dashboard = (Dashboard) request.getAttribute("dashboard");
 
@@ -27,6 +28,8 @@ String role = (String) session.getAttribute("role");
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 
@@ -45,27 +48,41 @@ String role = (String) session.getAttribute("role");
         <div class="flex-1">
 
             <a href="<%=request.getContextPath()%>/DashboardController"
-               class="block px-8 py-4 border-b border-rose-400 font-semibold">
+                    class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
+
+             <i class="fa-solid fa-table-cells-large"></i>
                 Dashboard
-            </a>
+
+                </a>
 
             <a href="#"
-               class="block px-8 py-4 border-b border-rose-400 font-semibold">
+            class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
+
+                <i class="fa-solid fa-folder"></i>
+    
                 Data Barang
-            </a>
+
+                </a>
 
             <a href="#"
-               class="block px-8 py-4 border-b border-rose-400 font-semibold">
+                class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
+
+                <i class="fa-solid fa-right-left"></i>
+
                 Transaksi
-            </a>
+
+                </a>
 
             <% if(role != null && role.equals("admin")) { %>
 
-            <a href="#"
-               class="block px-8 py-4 border-b border-rose-400 font-semibold">
-                Laporan
-            </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
 
+                   <i class="fa-solid fa-file-lines"></i>
+
+                Laporan
+
+            </a>
             <% } %>
 
         </div>

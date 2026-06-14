@@ -1,6 +1,7 @@
 package models;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class User extends dbConnect<User> {
 
@@ -47,12 +48,17 @@ public class User extends dbConnect<User> {
     }
 
     public User login(String username, String password) {
-        where("username = '" + username + "' AND password = '" + password + "'");
-        if (get().size() > 0) {
-            return get().get(0);
-        }
-        return null;
+
+    where("username = '" + username + "' AND password = '" + password + "'");
+
+    ArrayList<User> users = get();
+
+    if (users.size() > 0) {
+        return users.get(0);
     }
+
+    return null;
+}
 
     public void logout() {
     }
