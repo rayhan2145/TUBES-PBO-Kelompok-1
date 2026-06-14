@@ -55,7 +55,7 @@ String role = (String) session.getAttribute("role");
 
                 </a>
 
-            <a href="#"
+            <a href="<%=request.getContextPath()%>/BarangController"
             class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
 
                 <i class="fa-solid fa-folder"></i>
