@@ -24,7 +24,7 @@ import java.util.ArrayList;
  *
  * @author fadhlan
  */
-public abstract class dbConnect<E> implements Serializable{
+public abstract class dbConnect<E> implements Serializable {
 
     private transient Connection con;
     private transient Statement stmt;
@@ -45,8 +45,6 @@ public abstract class dbConnect<E> implements Serializable{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3307/" + db_name, username, password);
             stmt = con.createStatement();
-
-         
 
             isConnected = true;
             message = "Database Terkoneksi";
@@ -85,10 +83,10 @@ public abstract class dbConnect<E> implements Serializable{
                 }
             }
             int result = stmt.executeUpdate(
-                            "INSERT INTO " + table +
-                            "(" + cols.substring(0, cols.length() - 2) + ")" +
-                            " VALUES (" + values.substring(0, values.length() - 2) + ")"
-                        );
+                    "INSERT INTO " + table
+                    + "(" + cols.substring(0, cols.length() - 2) + ")"
+                    + " VALUES (" + values.substring(0, values.length() - 2) + ")"
+            );
             message = "info insert: " + result + " rows affected";
         } catch (Exception e) {
             message = e.getMessage();
@@ -264,4 +262,17 @@ public abstract class dbConnect<E> implements Serializable{
         this.primaryKey = primaryKey;
     }
 
+    public static Connection getConnection() throws Exception {
+        String db_name = "db_inventaris";
+        String username = "root";
+        String password = "";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        return DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/" + db_name,
+                username,
+                password
+        );
+    }
 }

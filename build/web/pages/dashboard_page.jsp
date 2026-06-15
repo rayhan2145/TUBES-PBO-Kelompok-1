@@ -1,42 +1,42 @@
-        <%-- 
-            Document   : dashboard_page
-            Created on : 14 Jun 2026, 01.58.59
-            Author     : zidane mardico1178
-        --%>
+<%-- 
+    Document   : dashboard_page
+    Created on : 14 Jun 2026, 01.58.59
+    Author     : zidane mardico1178
+--%>
 
-        <%@page contentType="text/html" pageEncoding="UTF-8"%>
-        <%@page import="models.Dashboard"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="models.Dashboard"%>
 
 
-        <%
-        Dashboard dashboard = (Dashboard) request.getAttribute("dashboard");
+<%
+    Dashboard dashboard = (Dashboard) request.getAttribute("dashboard");
 
-        int[] dataMasuk = (int[]) request.getAttribute("dataMasuk");
-        int[] dataKeluar = (int[]) request.getAttribute("dataKeluar");
+    int[] dataMasuk = (int[]) request.getAttribute("dataMasuk");
+    int[] dataKeluar = (int[]) request.getAttribute("dataKeluar");
 
-        if (dashboard == null) {
-            response.sendRedirect(request.getContextPath() + "/DashboardController");
-            return;
-        }
+    if (dashboard == null) {
+        response.sendRedirect(request.getContextPath() + "/DashboardController");
+        return;
+    }
 
-        String role = (String) session.getAttribute("role");
-        %>
+    String role = (String) session.getAttribute("role");
+%>
 
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <title>Dashboard Inventaris</title>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Dashboard Inventaris</title>
 
-            <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
 
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-            <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-        </head>
+    </head>
 
-        <body class="bg-zinc-800 min-h-screen">
+    <body class="bg-zinc-800 min-h-screen">
 
         <div class="w-full bg-white flex min-h-screen">
 
@@ -51,81 +51,81 @@
                 <div class="flex-1">
 
                     <a href="<%=request.getContextPath()%>/DashboardController"
-                            class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
+                       class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
 
-                     <i class="fa-solid fa-table-cells-large"></i>
+                        <i class="fa-solid fa-table-cells-large"></i>
                         Dashboard
 
-                        </a>
+                    </a>
 
                     <a href="<%=request.getContextPath()%>/BarangController"
-                    class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
+                       class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
 
                         <i class="fa-solid fa-folder"></i>
 
                         Data Barang
 
-                        </a>
+                    </a>
 
-                   <a href="<%=request.getContextPath()%>/TransaksiController"
-                      class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
+                    <a href="<%=request.getContextPath()%>/TransaksiController"
+                       class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
 
-                    <i class="fa-solid fa-right-left"></i>
+                        <i class="fa-solid fa-right-left"></i>
 
-                    Transaksi
+                        Transaksi
 
                     </a>
 
-                    <% if(role != null && role.equals("supervisor")) { %>
+                    <% if (role != null && role.equals("supervisor")) {%>
 
-                        <a href="#"
-                            class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
+                    <a href="<%=request.getContextPath()%>/pages/laporan_page.jsp"
+                       class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
 
-                           <i class="fa-solid fa-file-lines"></i>
+                        <i class="fa-solid fa-file-lines"></i>
 
-                        Laporan
+                        Laporan Transaksi
 
                     </a>
-                    <% } %>
+                    <% }%>
 
                 </div>
 
                 <div class="border-t border-rose-400 p-6">
 
-                <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between">
 
-                     <div class="font-semibold">
-                         Pengguna :
-                     <br>
-                        <%= session.getAttribute("username") %>
-                 </div>
+                        <div class="font-semibold">
+                            Pengguna :
+                            <br>
+                            <%= session.getAttribute("username")%>
+                        </div>
 
-        <a href="<%=request.getContextPath()%>/LogoutController"
-           class="text-white text-2xl hover:text-gray-200">
+                        <a href="<%=request.getContextPath()%>/LogoutController"
+                           class="text-white text-2xl hover:text-gray-200">
 
-            <i class="fa-solid fa-right-from-bracket"></i>
+                            <i class="fa-solid fa-right-from-bracket"></i>
 
-        </a>
+                        </a>
 
-    </div>
+                    </div>
 
-</div>
+                </div>
 
             </div>
 
             <!-- CONTENT -->
 
-          <div class="flex-1 bg-white px-12 pb-12 pt-4">
+            <div class="flex-1 bg-white px-12 pb-12 pt-4">
 
                 <div class="mb-4">
 
-            <h1 class="text-5xl font-bold mb-4">
-                Dashboard
-            </h1>
+                    <h1 class="text-5xl font-bold mb-4">
+                        Dashboard
+                    </h1>
 
-            <div class="border-b border-gray-300"></div>
+                    <div class="border-b border-gray-300"></div>
 
-        </div>
+                </div>
                 <!-- CARD -->
 
                 <div class="grid grid-cols-4 gap-8 mt-6 mb-10">
@@ -136,7 +136,7 @@
                         </h2>
 
                         <p class="text-5xl font-bold mt-4">
-                            <%= dashboard.getTotalBarang() %>
+                            <%= dashboard.getTotalBarang()%>
                         </p>
                     </div>
 
@@ -146,7 +146,7 @@
                         </h2>
 
                         <p class="text-5xl font-bold mt-4">
-                            <%= dashboard.getBarangMasuk() %>
+                            <%= dashboard.getBarangMasuk()%>
                         </p>
                     </div>
 
@@ -156,7 +156,7 @@
                         </h2>
 
                         <p class="text-5xl font-bold mt-4">
-                            <%= dashboard.getBarangKeluar() %>
+                            <%= dashboard.getBarangKeluar()%>
                         </p>
                     </div>
 
@@ -166,7 +166,7 @@
                         </h2>
 
                         <p class="text-5xl font-bold mt-4">
-                            <%= dashboard.getTotalStok() %>
+                            <%= dashboard.getTotalStok()%>
                         </p>
                     </div>
 
@@ -189,66 +189,66 @@
         </div>
 
 
-       <script>
+        <script>
 
-    const ctx = document.getElementById('barangChart');
+            const ctx = document.getElementById('barangChart');
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [
-                'Jan','Feb','Mar','Apr','Mei','Jun',
-                'Jul','Agu','Sep','Okt','Nov','Des'
-            ],
-            datasets: [
-            {
-                label: 'Barang Masuk',
-                data: [
-                    <%= dataMasuk[0] %>,
-                    <%= dataMasuk[1] %>,
-                    <%= dataMasuk[2] %>,
-                    <%= dataMasuk[3] %>,
-                    <%= dataMasuk[4] %>,
-                    <%= dataMasuk[5] %>,
-                    <%= dataMasuk[6] %>,
-                    <%= dataMasuk[7] %>,
-                    <%= dataMasuk[8] %>,
-                    <%= dataMasuk[9] %>,
-                    <%= dataMasuk[10] %>,
-                    <%= dataMasuk[11] %>
-                ],
-                backgroundColor: '#ff3b3b'
-            },
-            {
-                label: 'Barang Keluar',
-                data: [
-                    <%= dataKeluar[0] %>,
-                    <%= dataKeluar[1] %>,
-                    <%= dataKeluar[2] %>,
-                    <%= dataKeluar[3] %>,
-                    <%= dataKeluar[4] %>,
-                    <%= dataKeluar[5] %>,
-                    <%= dataKeluar[6] %>,
-                    <%= dataKeluar[7] %>,
-                    <%= dataKeluar[8] %>,
-                    <%= dataKeluar[9] %>,
-                    <%= dataKeluar[10] %>,
-                    <%= dataKeluar[11] %>
-                ],
-                backgroundColor: '#2563eb'
-            }]
-        },
-         responsive: true,
-              animations: {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
+                        'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'
+                    ],
+                    datasets: [
+                        {
+                            label: 'Barang Masuk',
+                            data: [
+            <%= dataMasuk[0]%>,
+            <%= dataMasuk[1]%>,
+            <%= dataMasuk[2]%>,
+            <%= dataMasuk[3]%>,
+            <%= dataMasuk[4]%>,
+            <%= dataMasuk[5]%>,
+            <%= dataMasuk[6]%>,
+            <%= dataMasuk[7]%>,
+            <%= dataMasuk[8]%>,
+            <%= dataMasuk[9]%>,
+            <%= dataMasuk[10]%>,
+            <%= dataMasuk[11]%>
+                            ],
+                            backgroundColor: '#ff3b3b'
+                        },
+                        {
+                            label: 'Barang Keluar',
+                            data: [
+            <%= dataKeluar[0]%>,
+            <%= dataKeluar[1]%>,
+            <%= dataKeluar[2]%>,
+            <%= dataKeluar[3]%>,
+            <%= dataKeluar[4]%>,
+            <%= dataKeluar[5]%>,
+            <%= dataKeluar[6]%>,
+            <%= dataKeluar[7]%>,
+            <%= dataKeluar[8]%>,
+            <%= dataKeluar[9]%>,
+            <%= dataKeluar[10]%>,
+            <%= dataKeluar[11]%>
+                            ],
+                            backgroundColor: '#2563eb'
+                        }]
+                },
+                responsive: true,
+                animations: {
                     y: {
-                     duration: 5000,
-                     from: 0
-                
-            }
-        }
-    });
+                        duration: 5000,
+                        from: 0
 
-    </script>
+                    }
+                }
+            });
 
-        </body>
-        </html>
+        </script>
+
+    </body>
+</html>
