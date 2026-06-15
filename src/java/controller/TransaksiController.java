@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Barang;
 import models.Transaksi;
 
 @WebServlet(name = "TransaksiController", urlPatterns = {"/TransaksiController"})
@@ -26,15 +27,7 @@ public class TransaksiController extends HttpServlet {
         }
 
         switch (aksi) {
-
-            case "hapus":
-                hapusTransaksi(request, response);
-                break;
-
-            case "edit":
-                editTransaksi(request, response);
-                break;
-
+            
             default:
                 tampilkanTransaksi(request, response);
                 break;
@@ -42,18 +35,45 @@ public class TransaksiController extends HttpServlet {
     }
 
     private void tampilkanTransaksi(HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
+        HttpServletResponse response)
+        throws ServletException, IOException {
 
-        Transaksi transaksi = new Transaksi();
+    int page = 1;
 
-        ArrayList<Transaksi> dataTransaksi = transaksi.get();
+    String pageParam = request.getParameter("page");
 
-        request.setAttribute("dataTransaksi", dataTransaksi);
-
-        request.getRequestDispatcher("/pages/transaksi_page.jsp")
-                .forward(request, response);
+    if(pageParam != null){
+        page = Integer.parseInt(pageParam);
     }
+
+    int limit = 10;
+    int offset = (page - 1) * limit;
+
+    // ambil total data
+    Transaksi totalTransaksi = new Transaksi();
+    int totalData = totalTransaksi.get().size();
+
+    // ambil data sesuai halaman
+    Transaksi transaksi = new Transaksi();
+
+    transaksi.addQuery(
+        "LIMIT " + limit + " OFFSET " + offset
+    );
+
+    ArrayList<Transaksi> dataTransaksi = transaksi.get();
+
+    request.setAttribute("dataTransaksi", dataTransaksi);
+    request.setAttribute("currentPage", page);
+    request.setAttribute("totalData", totalData);
+    
+    Barang barang = new Barang();
+    ArrayList<Barang> dataBarang = barang.get();
+
+    request.setAttribute("dataBarang", dataBarang);
+
+    request.getRequestDispatcher("/pages/transaksi_page.jsp")
+            .forward(request, response);
+}
 
     @Override
     protected void doPost(HttpServletRequest request,
@@ -72,11 +92,7 @@ public class TransaksiController extends HttpServlet {
             case "tambah":
                 tambahTransaksi(request, response);
                 break;
-
-            case "update":
-                updateTransaksi(request, response);
-                break;
-
+                
             default:
                 tampilkanTransaksi(request, response);
                 break;
@@ -103,64 +119,38 @@ public class TransaksiController extends HttpServlet {
                 request.getParameter("id_barang"));
 
         transaksi.tambahTransaksi();
+        
 
-        response.sendRedirect("TransaksiController");
+        String idBarang = request.getParameter("id_barang");
+
+        int jumlah = Integer.parseInt(
+            request.getParameter("jumlah"));
+
+        String jenis = request.getParameter(
+        "jenis_transaksi");
+
+        Barang barang = new Barang();
+
+        Barang dataBarang = barang.find(idBarang);
+
+        if(jenis.equalsIgnoreCase("masuk")){
+
+        dataBarang.setStok(
+            dataBarang.getStok() + jumlah
+        );
+
+        } else {
+
+            dataBarang.setStok(
+            dataBarang.getStok() - jumlah
+    );
+
     }
 
-    private void updateTransaksi(HttpServletRequest request,
-            HttpServletResponse response)
-            throws IOException {
-
-        Transaksi transaksi = new Transaksi();
-
-        transaksi.setId_transaksi(
-                request.getParameter("id_transaksi"));
-        transaksi.setTanggal(
-                request.getParameter("tanggal"));
-        transaksi.setJumlah(
-                Integer.parseInt(request.getParameter("jumlah")));
-        transaksi.setSupplier(
-                request.getParameter("supplier"));
-        transaksi.setJenis_transaksi(
-                request.getParameter("jenis_transaksi"));
-        transaksi.setId_barang(
-                request.getParameter("id_barang"));
-
-        transaksi.editTransaksi();
+        dataBarang.editBarang();
 
         response.sendRedirect("TransaksiController");
-    }
 
-    private void hapusTransaksi(HttpServletRequest request,
-            HttpServletResponse response)
-            throws IOException {
-
-        Transaksi transaksi = new Transaksi();
-
-        transaksi.setId_transaksi(
-                request.getParameter("id_transaksi"));
-
-        transaksi.hapusTransaksi();
-
-        response.sendRedirect("TransaksiController");
-    }
-
-    private void editTransaksi(HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
-
-        String idTransaksi =
-                request.getParameter("id_transaksi");
-
-        Transaksi transaksi = new Transaksi();
-
-        Transaksi data =
-                transaksi.find(idTransaksi);
-
-        request.setAttribute("transaksi", data);
-
-        request.getRequestDispatcher("/pages/edit_transaksi_page.jsp")
-                .forward(request, response);
     }
 
     private String generateIdTransaksi() {

@@ -1,10 +1,13 @@
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <%@page import="java.util.ArrayList"%>
     <%@page import="models.Transaksi"%>
+    <%@page import="models.Barang"%>
 
     <%
     ArrayList<Transaksi> dataTransaksi =
             (ArrayList<Transaksi>) request.getAttribute("dataTransaksi");
+    ArrayList<Barang> dataBarang =
+        (ArrayList<Barang>) request.getAttribute("dataBarang");
 
     if(dataTransaksi == null){
         response.sendRedirect(
@@ -13,8 +16,14 @@
         return;
     }
     String role = (String) session.getAttribute("role");
-    %>
+    int totalData = (Integer) request.getAttribute("totalData");
+    int currentPage = 1;
 
+    if(request.getAttribute("currentPage") != null){
+            currentPage = (Integer) request.getAttribute("currentPage");
+}   
+    %>
+    
     <!DOCTYPE html>
     <html>
     <head>
@@ -65,7 +74,7 @@
 
         </a>
 
-        <% if(role != null && role.equals("admin")) { %>
+        <% if(role != null && role.equals("supervisor")) { %>
 
         <a href="#"
            class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
@@ -79,11 +88,26 @@
 
     </div>
 
-    <div class="border-t border-rose-400 p-6 font-semibold">
-        Pengguna :
-        <br>
-        <%= session.getAttribute("username") %>
+    <div class="border-t border-rose-400 p-6">
+
+    <div class="flex items-center justify-between">
+
+        <div class="font-semibold">
+            Pengguna :
+            <br>
+            <%= session.getAttribute("username") %>
+        </div>
+
+        <a href="<%=request.getContextPath()%>/LogoutController"
+           class="w-10 h-10 bg-white text-rose-600 rounded-full flex items-center justify-center hover:bg-gray-100">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+        </a>
+
     </div>
+
+</div>
 
 </div>
     <div class="flex-1 bg-white px-12 py-8">
@@ -105,12 +129,12 @@
         <% if(role != null && role.equals("admin")) { %>
 
         <button
-            class="bg-rose-600 hover:bg-rose-700 text-white px-5 py-2 rounded-lg font-semibold">
+    onclick="document.getElementById('modalTambahTransaksi').classList.remove('hidden')"
+    class="bg-rose-600 hover:bg-rose-700 text-white px-5 py-2 rounded-lg font-semibold">
 
-            + Tambah Transaksi
+    + Tambah Transaksi
 
-        </button>
-
+</button>
         <% } %>
 
     </div>
@@ -187,8 +211,120 @@
             </table>
 
         </div>
+                 <div class="flex justify-between items-center mt-4">
+
+            <span class="text-gray-500">
+               Menampilkan <%= dataTransaksi.size() %> data dari <%= totalData %> data
+            </span>
+
+           <div class="flex gap-2">
+
+                <% if(currentPage > 1){ %>
+    
+            <a href="<%=request.getContextPath()%>/TransaksiController?page=<%= currentPage - 1 %>"class="border px-3 py-1 rounded">
+                 &lt;
+         </a>
+
+    <% } %>
+
+                    <span class="bg-rose-600 text-white px-3 py-1 rounded">
+                           <%= currentPage %>
+                    </span>
+
+                    <a href="<%=request.getContextPath()%>/TransaksiController?page=<%= currentPage + 1 %>"class="border px-3 py-1 rounded">
+                     &gt;
+            </a>
+
+                </div>
+
+        </div>
     </div>
     </div>
+                        <div id="modalTambahTransaksi"
+     class="hidden fixed inset-0 bg-black/50 flex items-center justify-center">
+
+    <div class="bg-white p-8 rounded-xl w-[550px] shadow-xl">
+
+        <h2 class="text-2xl font-bold mb-6">
+            Tambah Transaksi
+        </h2>
+
+        <form action="TransaksiController" method="post">
+
+            <input type="hidden"
+                   name="action"
+                   value="tambah">
+
+            <select
+                name="id_barang"
+                class="border w-full p-3 mb-3 rounded"
+                required>
+
+                <option value="">
+                    Pilih Barang
+                </option>
+
+                <% for(Barang barang : dataBarang){ %>
+
+                <option value="<%= barang.getId_barang() %>">
+                    <%= barang.getNama_barang() %>
+                </option>
+
+                <% } %>
+
+            </select>
+
+            <select
+                name="jenis_transaksi"
+                class="border w-full p-3 mb-3 rounded"
+                required>
+
+                <option value="masuk">Masuk</option>
+                <option value="keluar">Keluar</option>
+
+            </select>
+
+            <input type="number"
+                   name="jumlah"
+                   placeholder="Jumlah"
+                   class="border w-full p-3 mb-3 rounded"
+                   required>
+
+            <input type="text"
+                   name="supplier"
+                   placeholder="Supplier"
+                   class="border w-full p-3 mb-3 rounded"
+                   required>
+
+            <input type="date"
+                   name="tanggal"
+                   class="border w-full p-3 mb-5 rounded"
+                   required>
+
+            <div class="flex justify-end gap-3">
+
+                <button type="button"
+                        onclick="document.getElementById('modalTambahTransaksi').classList.add('hidden')"
+                        class="border px-4 py-2 rounded">
+
+                    Batal
+
+                </button>
+
+                <button type="submit"
+                        class="bg-rose-600 text-white px-4 py-2 rounded">
+
+                    Simpan
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
     </body>
     </html>
