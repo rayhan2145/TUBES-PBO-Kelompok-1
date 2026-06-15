@@ -66,7 +66,7 @@ String role = (String) session.getAttribute("role");
 
                 </a>
 
-                <a href="#"
+                <a href="<%=request.getContextPath()%>/TransaksiController"
                    class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
 
                     <i class="fa-solid fa-right-left"></i>
@@ -116,10 +116,35 @@ String role = (String) session.getAttribute("role");
 
             <div class="flex justify-between items-center mb-6">
 
-                <input
-                    type="text"
-                    placeholder="Cari Nama Barang"
-                    class="border border-gray-300 rounded-lg px-4 py-2 w-80">
+                <div class="flex items-center gap-4">
+                    
+                    <input
+                        id="searchBarang"
+                        type="text"
+                        placeholder="Cari Nama Barang"
+                        class="border border-gray-300 rounded-lg px-4 py-2 w-80">
+                    
+                    <select
+                        id="filterKategori"
+                        class="border border-gray-300 rounded-lg px-4 py-2 w-52">
+
+                        <option value="">Semua Kategori</option>
+                        <option value="K001">Elektronik</option>
+                        <option value="K002">Furniture</option>
+                        <option value="K003">ATK</option>
+
+                    </select>
+                    
+                    <select
+                        id="filterStatus"
+                        class="border border-gray-300 rounded-lg px-4 py-2 w-52">
+
+                        <option value="">Semua Status</option>
+                        <option value="Tersedia">Tersedia</option>
+                        <option value="Habis">Habis</option>
+
+                    </select>
+                </div>
 
                 <% if(role != null && role.equals("admin")) { %>
                 <button
@@ -160,7 +185,7 @@ String role = (String) session.getAttribute("role");
 
                     <% for(Barang barang : dataBarang){ %>
 
-                    <tr class="border-b hover:bg-gray-50">
+                    <tr class="data-barang border-b hover:bg-gray-50">
 
                         <td class="p-4">
                             <%= barang.getId_barang() %>
@@ -170,7 +195,7 @@ String role = (String) session.getAttribute("role");
                             <%= barang.getNama_barang() %>
                         </td>
 
-                        <td class="p-4">
+                        <td class="kategori p-4">
                             <%= barang.getId_kategori() %>
                         </td>
 
@@ -182,7 +207,7 @@ String role = (String) session.getAttribute("role");
                             <%= barang.getSatuan() %>
                         </td>
 
-                        <td class="p-4">
+                        <td class="status p-4">
 
                             <% if(barang.getStok() > 0){ %>
 
@@ -328,6 +353,84 @@ String role = (String) session.getAttribute("role");
         </div>
 
     </div>
+    
+    <script>
 
+    const searchBarang =
+        document.getElementById("searchBarang");
+
+    const filterKategori =
+        document.getElementById("filterKategori");
+
+    const filterStatus =
+        document.getElementById("filterStatus");
+
+    function filterData() {
+
+        const keyword =
+            searchBarang.value.toLowerCase();
+
+        const kategori =
+            filterKategori.value;
+
+        const status =
+            filterStatus.value;
+
+        const rows =
+            document.querySelectorAll(".data-barang");
+
+        rows.forEach(row => {
+
+            const namaBarang =
+                row.children[1].innerText.toLowerCase();
+
+            const kategoriBarang =
+                row.querySelector(".kategori")
+                   .innerText
+                   .trim();
+
+            const statusBarang =
+                row.querySelector(".status")
+                   .innerText
+                   .trim();
+
+            const cocokNama =
+                namaBarang.includes(keyword);
+
+            const cocokKategori =
+                kategori === "" ||
+                kategoriBarang === kategori;
+
+            const cocokStatus =
+                status === "" ||
+                statusBarang === status;
+
+            row.style.display =
+                (cocokNama &&
+                 cocokKategori &&
+                 cocokStatus)
+                 ? ""
+                 : "none";
+
+        });
+    }
+
+    searchBarang.addEventListener(
+        "keyup",
+        filterData
+    );
+
+    filterKategori.addEventListener(
+        "change",
+        filterData
+    );
+
+    filterStatus.addEventListener(
+        "change",
+        filterData
+    );
+
+    </script>
+    
     </body>
 </html>
