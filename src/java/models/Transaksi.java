@@ -89,4 +89,27 @@ public class Transaksi extends dbConnect<Transaksi> {
     public String getMessage() {
         return super.getMessage();
     }
+    public void setId_transaksi(String id_transaksi) {
+    this.id_transaksi = id_transaksi;
+    }
+
+    public void setTanggal(String tanggal) {
+    this.tanggal = tanggal;
+    }      
+
+    public void setJumlah(int jumlah) {
+    this.jumlah = jumlah;
+    }
+
+    public void setSupplier(String supplier) {
+    this.supplier = supplier;
+    }
+
+    public void setJenis_transaksi(String jenis_transaksi) {
+    this.jenis_transaksi = jenis_transaksi;
+    }
+
+    public void setId_barang(String id_barang) {
+    this.id_barang = id_barang;
+    }
 }
