@@ -120,11 +120,39 @@
     <div class="border-b border-gray-300 mb-6"></div>
 
     <div class="flex justify-between items-center">
+        
+        <div class="flex items-center gap-4">
+            
+            <input
+                id="searchTransaksi"
+                type="text"
+                placeholder="Cari Transaksi"
+                class="border border-gray-300 rounded-lg px-4 py-2 w-80">
 
-        <input
-            type="text"
-            placeholder="Cari Transaksi"
-            class="border border-gray-300 rounded-lg px-4 py-2 w-80">
+            <select
+                id="filterJenis"
+                class="border border-gray-300 rounded-lg px-4 py-2 w-52">
+
+                <option value="">
+                    Semua Jenis
+                </option>
+
+                <option value="Masuk">
+                    Masuk
+                </option>
+
+                <option value="Keluar">
+                    Keluar
+                </option>
+
+            </select>
+
+            <input
+                id="filterTanggal"
+                type="date"
+                class="border border-gray-300 rounded-lg px-4 py-2">
+            
+        </div>
 
         <% if(role != null && role.equals("admin")) { %>
 
@@ -150,6 +178,7 @@
                     <tr>
                         <th class="p-4 text-left">ID Transaksi</th>
                         <th class="p-4 text-left">ID Barang</th>
+                        <th class="p-4 text-left">Nama Barang</th>
                         <th class="p-4 text-left">Supplier</th>
                         <th class="p-4 text-left">Jumlah</th>
                         <th class="p-4 text-left">Tanggal</th>
@@ -162,7 +191,7 @@
 
                 <% for(Transaksi transaksi : dataTransaksi){ %>
 
-                    <tr class="border-b">
+                    <tr class="data-transaksi border-b">
 
                         <td class="p-4">
                             <%= transaksi.getId_transaksi() %>
@@ -170,6 +199,28 @@
 
                         <td class="p-4">
                             <%= transaksi.getId_barang() %>
+                        </td>
+                        
+                        <td class="nama-barang p-4">
+
+                            <%
+                                String namaBarang = "-";
+
+                                for(Barang barang : dataBarang){
+
+                                    if(barang.getId_barang().equals(
+                                            transaksi.getId_barang())){
+
+                                        namaBarang =
+                                            barang.getNama_barang();
+
+                                        break;
+                                    }
+                                }
+                            %>
+
+                            <%= namaBarang %>
+
                         </td>
 
                         <td class="p-4">
@@ -180,11 +231,11 @@
                             <%= transaksi.getJumlah() %>
                         </td>
 
-                        <td class="p-4">
+                        <td class="tanggal p-4">
                             <%= transaksi.getTanggal() %>
                         </td>
 
-                        <td class="p-4">
+                        <td class="jenis p-4">
 
                             <% if("masuk".equalsIgnoreCase(transaksi.getJenis_transaksi())) { %>
 
@@ -326,5 +377,98 @@
 
 </div>
 
+         <script>
+
+        const searchTransaksi =
+            document.getElementById("searchTransaksi");
+
+        const filterJenis =
+            document.getElementById("filterJenis");
+
+        const filterTanggal =
+            document.getElementById("filterTanggal");
+
+        function filterTransaksi(){
+
+            const keyword =
+                searchTransaksi.value.toLowerCase();
+
+            const jenis =
+                filterJenis.value;
+
+            const tanggal =
+                filterTanggal.value;
+
+            const rows =
+                document.querySelectorAll(".data-transaksi");
+
+            rows.forEach(row => {
+
+                const idTransaksi =
+                    row.children[0].innerText.toLowerCase();
+
+                const idBarang =
+                    row.children[1].innerText.toLowerCase();
+
+                const namaBarang =
+                    row.querySelector(".nama-barang")
+                       .innerText
+                       .toLowerCase();
+
+                const supplier =
+                    row.children[3].innerText.toLowerCase();
+
+                const jenisTransaksi =
+                    row.querySelector(".jenis")
+                       .innerText
+                       .trim();
+
+                const tanggalTransaksi =
+                    row.querySelector(".tanggal")
+                       .innerText
+                       .trim();
+
+                const cocokKeyword =
+                    idTransaksi.includes(keyword) ||
+                    idBarang.includes(keyword) ||
+                    namaBarang.includes(keyword) ||
+                    supplier.includes(keyword);
+
+                const cocokJenis =
+                    jenis === "" ||
+                    jenisTransaksi === jenis;
+
+                const cocokTanggal =
+                    tanggal === "" ||
+                    tanggalTransaksi === tanggal;
+
+                row.style.display =
+                    (cocokKeyword &&
+                     cocokJenis &&
+                     cocokTanggal)
+                     ? ""
+                     : "none";
+
+            });
+
+        }
+
+        searchTransaksi.addEventListener(
+            "keyup",
+            filterTransaksi
+        );
+
+        filterJenis.addEventListener(
+            "change",
+            filterTransaksi
+        );
+
+        filterTanggal.addEventListener(
+            "change",
+            filterTransaksi
+        );
+
+        </script>       
+                
     </body>
     </html>

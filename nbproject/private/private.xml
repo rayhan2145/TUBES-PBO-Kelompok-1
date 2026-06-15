@@ -3,27 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/web/pages/dashboard_page.jsp</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/models/dbConnect.java</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/controller/userController.java</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/controller/DashboardController.java</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/web/pages/login_page.jsp</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/models/User.java</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/controller/TransaksiController.java</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/controller/KategoriController.java</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/web/pages/edit_barang_page.jsp</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/web/pages/register_page.jsp</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/models/Transaksi.java</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/controller/BarangController.java</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/models/Barang.java</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/web/pages/barang_page.jsp</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/web/pages/transaksi_page.jsp</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/models/Kategori.java</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/models/Staff.java</file>
             <file>file:/C:/Users/Naufalnbn/Documents/Semester%204/Pemrograman%20Berorientasi%20Objek/TUBES-PBO-Kelompok-1/web/index.jsp</file>
             <file>file:/C:/Users/Naufalnbn/Documents/Semester%204/Pemrograman%20Berorientasi%20Objek/TUBES-PBO-Kelompok-1/src/java/models/dbConnect.java</file>
             <file>file:/C:/Users/Naufalnbn/Documents/Semester%204/Pemrograman%20Berorientasi%20Objek/TUBES-PBO-Kelompok-1/src/java/models/User.java</file>
             <file>file:/C:/Users/Naufalnbn/Documents/Semester%204/Pemrograman%20Berorientasi%20Objek/TUBES-PBO-Kelompok-1/web/pages/barang_page.jsp</file>
+            <file>file:/C:/Users/Naufalnbn/Documents/Semester%204/Pemrograman%20Berorientasi%20Objek/TUBES-PBO-Kelompok-1/web/pages/transaksi_page.jsp</file>
+            <file>file:/C:/Users/Naufalnbn/Documents/Semester%204/Pemrograman%20Berorientasi%20Objek/TUBES-PBO-Kelompok-1/web/pages/dashboard_page.jsp</file>
+            <file>file:/C:/Users/Naufalnbn/Documents/Semester%204/Pemrograman%20Berorientasi%20Objek/TUBES-PBO-Kelompok-1/src/java/controller/BarangController.java</file>
+            <file>file:/C:/Users/Naufalnbn/Documents/Semester%204/Pemrograman%20Berorientasi%20Objek/TUBES-PBO-Kelompok-1/src/java/models/Barang.java</file>
+            <file>file:/C:/Users/Naufalnbn/Documents/Semester%204/Pemrograman%20Berorientasi%20Objek/TUBES-PBO-Kelompok-1/src/java/models/Kategori.java</file>
         </group>
     </open-files>
 </project-private>
