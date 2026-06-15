@@ -14,6 +14,7 @@ import models.Barang;
 import models.Transaksi;
 import models.Dashboard;
 
+
 @WebServlet(name = "DashboardController", urlPatterns = {"/DashboardController"})
 public class DashboardController extends HttpServlet {
 
@@ -42,22 +43,35 @@ public class DashboardController extends HttpServlet {
 
         int masuk = 0;
         int keluar = 0;
+     
+        int[] dataMasuk = new int[12];
+        int[] dataKeluar = new int[12];
 
         for (Transaksi t : listTransaksi) {
 
-            if ("masuk".equalsIgnoreCase(t.getJenis_transaksi())) {
-                masuk += t.getJumlah();
-            }
+    String tanggal = t.getTanggal();
 
-            if ("keluar".equalsIgnoreCase(t.getJenis_transaksi())) {
-                keluar += t.getJumlah();
-            }
-        }
+    int bulan =
+        Integer.parseInt(tanggal.substring(5, 7)) - 1;
 
+    if ("masuk".equalsIgnoreCase(t.getJenis_transaksi())) {
+
+        masuk += t.getJumlah();
+        dataMasuk[bulan] += t.getJumlah();
+    }
+
+    if ("keluar".equalsIgnoreCase(t.getJenis_transaksi())) {
+
+        keluar += t.getJumlah();
+        dataKeluar[bulan] += t.getJumlah();
+    }
+}
         dashboard.setBarangMasuk(masuk);
         dashboard.setBarangKeluar(keluar);
 
         request.setAttribute("dashboard", dashboard);
+        request.setAttribute("dataMasuk", dataMasuk);
+        request.setAttribute("dataKeluar", dataKeluar);
 
         request.getRequestDispatcher("/pages/dashboard_page.jsp")
                 .forward(request, response);

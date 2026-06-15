@@ -74,7 +74,7 @@ String role = (String) session.getAttribute("role");
 
                 </a>
 
-                <% if(role != null && role.equals("admin")) { %>
+                <% if(role != null && role.equals("supervisor")) { %>
 
                 <a href="#"
                    class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
@@ -88,11 +88,26 @@ String role = (String) session.getAttribute("role");
 
             </div>
 
-            <div class="border-t border-rose-400 p-6 font-semibold">
-                Pengguna :
-                <br>
-                <%= session.getAttribute("username") %>
-            </div>
+           <div class="border-t border-rose-400 p-6">
+
+    <div class="flex items-center justify-between">
+
+        <div class="font-semibold">
+            Pengguna :
+            <br>
+            <%= session.getAttribute("username") %>
+        </div>
+
+        <a href="<%=request.getContextPath()%>/LogoutController"
+           class="w-10 h-10 bg-white text-rose-600 rounded-full flex items-center justify-center hover:bg-gray-100">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+        </a>
+
+    </div>
+
+</div>
 
         </div>
 
