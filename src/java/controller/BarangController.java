@@ -103,7 +103,12 @@ public class BarangController extends HttpServlet {
     private void tambahBarang(HttpServletRequest request,
             HttpServletResponse response)
             throws IOException {
-
+        
+        if(!isAdmin(request)){
+            response.sendRedirect("BarangController");
+            return;
+        }
+        
         Barang barang = new Barang();
 
         String id = generateIdBarang();
@@ -123,6 +128,11 @@ public class BarangController extends HttpServlet {
             HttpServletResponse response)
             throws IOException {
 
+        if(!isAdmin(request)){
+            response.sendRedirect("BarangController");
+            return;
+        }
+        
         Barang barang = new Barang();
 
         barang.setId_barang(request.getParameter("id_barang"));
@@ -140,6 +150,11 @@ public class BarangController extends HttpServlet {
             HttpServletResponse response)
             throws IOException {
 
+        if(!isAdmin(request)){
+            response.sendRedirect("BarangController");
+            return;
+        }
+        
         Barang barang = new Barang();
 
         barang.setId_barang(request.getParameter("id_barang"));
@@ -153,6 +168,11 @@ public class BarangController extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
+        if(!isAdmin(request)){
+            response.sendRedirect("BarangController");
+            return;
+        }
+        
         String idBarang = request.getParameter("id_barang");
 
         Barang barang = new Barang();
@@ -164,6 +184,7 @@ public class BarangController extends HttpServlet {
         request.getRequestDispatcher("/pages/edit_barang_page.jsp")
                 .forward(request, response);
     }
+    
     private String generateIdBarang() {
         Barang barang = new Barang();
 
@@ -188,5 +209,14 @@ public class BarangController extends HttpServlet {
         nomor++;
 
         return String.format("B%03d", nomor);
+    }
+    
+    private boolean isAdmin(HttpServletRequest request){
+    String role =
+        (String) request.getSession()
+                        .getAttribute("role");
+
+    return role != null &&
+           role.equals("admin");
     }
 }
