@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/web/pages/dashboard_page.jsp</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/models/dbConnect.java</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/controller/userController.java</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/src/java/controller/DashboardController.java</file>
-            <file>file:/C:/semester%204/PBO%20tubes/TUBES-PBO-Kelompok-1/web/pages/login_page.jsp</file>
+            <file>file:/C:/Users/A/OneDrive/Dokumen%20Elitebook/Java%20Kuliah/Tubes%20PBO/Inventaris/src/java/controller/userController.java</file>
+            <file>file:/C:/Users/A/OneDrive/Dokumen%20Elitebook/Java%20Kuliah/Tubes%20PBO/Inventaris/src/java/controller/BarangController.java</file>
+            <file>file:/C:/Users/A/OneDrive/Dokumen%20Elitebook/Java%20Kuliah/Tubes%20PBO/Inventaris/src/java/models/Barang.java</file>
+            <file>file:/C:/Users/A/OneDrive/Dokumen%20Elitebook/Java%20Kuliah/Tubes%20PBO/Inventaris/src/java/models/dbConnect.java</file>
+            <file>file:/C:/Users/A/OneDrive/Dokumen%20Elitebook/Java%20Kuliah/Tubes%20PBO/Inventaris/web/pages/register_page.jsp</file>
+            <file>file:/C:/Users/A/OneDrive/Dokumen%20Elitebook/Java%20Kuliah/Tubes%20PBO/Inventaris/web/pages/dashboard_page.jsp</file>
+            <file>file:/C:/Users/A/OneDrive/Dokumen%20Elitebook/Java%20Kuliah/Tubes%20PBO/Inventaris/web/pages/barang_page.jsp</file>
+            <file>file:/C:/Users/A/OneDrive/Dokumen%20Elitebook/Java%20Kuliah/Tubes%20PBO/Inventaris/web/pages/edit_barang_page.jsp</file>
+            <file>file:/C:/Users/A/OneDrive/Dokumen%20Elitebook/Java%20Kuliah/Tubes%20PBO/Inventaris/src/java/controller/TransaksiController.java</file>
+            <file>file:/C:/Users/A/OneDrive/Dokumen%20Elitebook/Java%20Kuliah/Tubes%20PBO/Inventaris/src/java/controller/LaporanController.java</file>
         </group>
     </open-files>
 </project-private>

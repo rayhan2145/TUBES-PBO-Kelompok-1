@@ -121,13 +121,13 @@ String role = (String) session.getAttribute("role");
                     placeholder="Cari Nama Barang"
                     class="border border-gray-300 rounded-lg px-4 py-2 w-80">
 
+                <% if(role != null && role.equals("admin")) { %>
                 <button
                     onclick="document.getElementById('modalTambah').classList.remove('hidden')"
-                    class="bg-rose-600 hover:bg-rose-700 text-white px-5 py-2 rounded-lg font-semibold">
-
+                    class="bg-rose-600 text-white px-5 py-2 rounded-lg">
                     + Tambah Barang
-
                 </button>
+                <% } %>
 
             </div>
 
@@ -147,7 +147,10 @@ String role = (String) session.getAttribute("role");
                         <th class="p-4 text-left">Stok</th>
                         <th class="p-4 text-left">Satuan</th>
                         <th class="p-4 text-left">Status</th>
+                        
+                        <% if(role != null && role.equals("admin")) { %>
                         <th class="p-4 text-center">Aksi</th>
+                        <% } %>
 
                     </tr>
 
@@ -196,7 +199,8 @@ String role = (String) session.getAttribute("role");
                             <% } %>
 
                         </td>
-
+                            
+                        <% if(role != null && role.equals("admin")) { %>
                         <td class="p-4 text-center">
 
                             <div class="flex justify-center gap-2">
@@ -219,7 +223,8 @@ String role = (String) session.getAttribute("role");
                             </div>
 
                         </td>
-
+                        <% } %>
+                        
                     </tr>
 
                     <% } %>
