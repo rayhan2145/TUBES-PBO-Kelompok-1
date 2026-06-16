@@ -49,16 +49,16 @@ public class User extends dbConnect<User> {
 
     public User login(String username, String password) {
 
-    where("username = '" + username + "' AND password = '" + password + "'");
+        where("username = '" + username + "' AND password = '" + password + "'");
 
-    ArrayList<User> users = get();
+        ArrayList<User> users = get();
 
-    if (users.size() > 0) {
-        return users.get(0);
+        if (users.size() > 0) {
+            return users.get(0);
+        }
+
+        return null;
     }
-
-    return null;
-}
 
     public void logout() {
     }
@@ -70,11 +70,27 @@ public class User extends dbConnect<User> {
     public String getUsername() {
         return username;
     }
+
     public String getRole() {
         return role;
     }
-    
-    public String getMessage(){
+
+    public String getMessage() {
         return super.getMessage();
+    }
+
+    public User cariUsername(String username) {
+        where("username = '" + username + "'");
+        ArrayList<User> users = get();
+
+        if (users.size() > 0) {
+            return users.get(0);
+        }
+
+        return null;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

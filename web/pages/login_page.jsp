@@ -61,14 +61,14 @@
                 </div>
 
                 <div class="text-right mb-5">
-                    <a href="forgot_password.jsp" class="text-xs text-gray-500 hover:text-rose-600">
+                    <a href="<%= request.getContextPath()%>/pages/reset_password_1_page.jsp" class="text-xs text-gray-500 hover:text-rose-600">
                         Lupa Password?
                     </a>
                 </div>
 
                 <button 
                     type="submit"
-                    class="w-[230px] h-10 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl transitiontransition duration-300 focus:outline-none focus:ring-4 focus:ring-rose-600"
+                    class="w-[230px] h-10 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl transition  duration-300 focus:outline-none focus:ring-4 focus:ring-rose-600"
                     >
                     Login
                 </button>
