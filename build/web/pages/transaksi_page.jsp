@@ -76,7 +76,7 @@
 
                     <% if (role != null && role.equals("supervisor")) { %>
 
-                    <a href="#"
+                    <a href="<%=request.getContextPath()%>/laporan"
                        class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
 
                         <i class="fa-solid fa-file-lines"></i>

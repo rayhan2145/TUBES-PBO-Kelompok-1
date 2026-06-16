@@ -72,7 +72,7 @@
 
                     </a>
 
-                    <a href="laporan_page.jsp"
+                    <a href="#"
                        class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold bg-rose-700">
 
                         <i class="fa-solid fa-file-lines"></i>
