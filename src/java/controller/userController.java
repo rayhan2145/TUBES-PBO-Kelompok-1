@@ -119,7 +119,7 @@ public class userController extends HttpServlet {
         if ("logout".equals(aksi)) {
             logout(request, response);
         } else {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect(request.getContextPath() + "/pages/login_page.jsp");
         }
     }
 

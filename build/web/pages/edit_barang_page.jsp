@@ -8,16 +8,16 @@
 <%@page import="models.Barang"%>
 
 <%
-Barang barang = (Barang) request.getAttribute("barang");
+    Barang barang = (Barang) request.getAttribute("barang");
 
-if(barang == null){
-    response.sendRedirect(
-        request.getContextPath() + "/BarangController"
-    );
-    return;
-}
+    if (barang == null) {
+        response.sendRedirect(
+                request.getContextPath() + "/BarangController"
+        );
+        return;
+    }
 
-String role = (String) session.getAttribute("role");
+    String role = (String) session.getAttribute("role");
 %>
 <!DOCTYPE html>
 <html>
@@ -32,197 +32,218 @@ String role = (String) session.getAttribute("role");
     </head>
     <body class="bg-zinc-800 min-h-screen">
 
-    <div class="w-full bg-white flex min-h-screen">
+        <div class="w-full bg-white flex min-h-screen">
 
-        <!-- SIDEBAR -->
+            <!-- SIDEBAR -->
 
-        <div class="w-[240px] bg-rose-600 text-white flex flex-col">
+            <div class="w-[240px] bg-rose-600 text-white flex flex-col">
 
-            <div class="h-[90px] flex items-center justify-center border-b border-rose-400">
-                <h1 class="font-bold text-2xl">
-                    Nama Web
+                <div class="h-[90px] flex items-center justify-center border-b border-rose-400">
+                    <h1 class="font-bold text-2xl">
+                        Nama Web
+                    </h1>
+                </div>
+
+                <div class="flex-1">
+
+                    <a href="<%=request.getContextPath()%>/DashboardController"
+                       class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
+
+                        <i class="fa-solid fa-table-cells-large"></i>
+                        Dashboard
+
+                    </a>
+
+                    <a href="<%=request.getContextPath()%>/BarangController"
+                       class="flex items-center gap-3 px-8 py-4 bg-rose-700 border-b border-rose-400 font-semibold">
+
+                        <i class="fa-solid fa-folder"></i>
+                        Data Barang
+
+                    </a>
+
+                </div>
+
+                <div class="border-t border-rose-400 p-6">
+
+                    <div class="flex items-center justify-between">
+
+                        <div class="font-semibold">
+                            Pengguna :
+                            <br>
+                            <%= session.getAttribute("username")%>
+                        </div>
+
+                        <form action="<%=request.getContextPath()%>/userController"
+                              method="post"
+                              class="inline">
+
+                            <input type="hidden" name="aksi" value="logout">
+
+                            <button type="submit"
+                                    class="text-white text-2xl hover:text-gray-200 transition duration-200">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CONTENT -->
+
+            <div class="flex-1 bg-white px-12 py-8">
+
+                <h1 class="text-5xl font-bold mb-4">
+                    Edit Barang
                 </h1>
-            </div>
 
-            <div class="flex-1">
+                <div class="border-b border-gray-300 mb-8"></div>
 
-                <a href="<%=request.getContextPath()%>/DashboardController"
-                   class="flex items-center gap-3 px-8 py-4 border-b border-rose-400 font-semibold">
+                <div class="max-w-2xl">
 
-                    <i class="fa-solid fa-table-cells-large"></i>
-                    Dashboard
+                    <form action="<%=request.getContextPath()%>/BarangController"
+                          method="post">
 
-                </a>
+                        <input type="hidden"
+                               name="action"
+                               value="update">
 
-                <a href="<%=request.getContextPath()%>/BarangController"
-                   class="flex items-center gap-3 px-8 py-4 bg-rose-700 border-b border-rose-400 font-semibold">
+                        <!-- ID BARANG -->
 
-                    <i class="fa-solid fa-folder"></i>
-                    Data Barang
+                        <div class="mb-5">
 
-                </a>
+                            <label class="block mb-2 font-semibold">
+                                ID Barang
+                            </label>
 
-            </div>
+                            <input type="text"
+                                   name="id_barang"
+                                   value="<%= barang.getId_barang()%>"
+                                   readonly
+                                   class="w-full border bg-gray-100 p-3 rounded">
 
-            <div class="border-t border-rose-400 p-6 font-semibold">
-                Pengguna :
-                <br>
-                <%= session.getAttribute("username") %>
-            </div>
+                        </div>
 
-        </div>
+                        <!-- NAMA BARANG -->
 
-        <!-- CONTENT -->
+                        <div class="mb-5">
 
-        <div class="flex-1 bg-white px-12 py-8">
+                            <label class="block mb-2 font-semibold">
+                                Nama Barang
+                            </label>
 
-            <h1 class="text-5xl font-bold mb-4">
-                Edit Barang
-            </h1>
+                            <input type="text"
+                                   name="nama_barang"
+                                   value="<%= barang.getNama_barang()%>"
+                                   required
+                                   class="w-full border p-3 rounded">
 
-            <div class="border-b border-gray-300 mb-8"></div>
+                        </div>
 
-            <div class="max-w-2xl">
+                        <!-- KATEGORI -->
 
-                <form action="<%=request.getContextPath()%>/BarangController"
-                      method="post">
+                        <div class="mb-5">
 
-                    <input type="hidden"
-                           name="action"
-                           value="update">
+                            <label class="block mb-2 font-semibold">
+                                Kategori
+                            </label>
 
-                    <!-- ID BARANG -->
+                            <select
+                                name="id_kategori"
+                                class="w-full border p-3 rounded">
 
-                    <div class="mb-5">
+                                <option value="K001"
+                                        <%= barang.getId_kategori().equals("K001") ? "selected" : ""%>>
+                                    Elektronik
+                                </option>
 
-                        <label class="block mb-2 font-semibold">
-                            ID Barang
-                        </label>
+                                <option value="K002"
+                                        <%= barang.getId_kategori().equals("K002") ? "selected" : ""%>>
+                                    Furniture
+                                </option>
 
-                        <input type="text"
-                               name="id_barang"
-                               value="<%= barang.getId_barang() %>"
-                               readonly
-                               class="w-full border bg-gray-100 p-3 rounded">
+                                <option value="K003"
+                                        <%= barang.getId_kategori().equals("K003") ? "selected" : ""%>>
+                                    ATK
+                                </option>
 
-                    </div>
+                            </select>
 
-                    <!-- NAMA BARANG -->
+                        </div>
 
-                    <div class="mb-5">
+                        <!-- STOK -->
 
-                        <label class="block mb-2 font-semibold">
-                            Nama Barang
-                        </label>
+                        <div class="mb-5">
 
-                        <input type="text"
-                               name="nama_barang"
-                               value="<%= barang.getNama_barang() %>"
-                               required
-                               class="w-full border p-3 rounded">
+                            <label class="block mb-2 font-semibold">
+                                Stok
+                            </label>
 
-                    </div>
+                            <input type="number"
+                                   name="stok"
+                                   value="<%= barang.getStok()%>"
+                                   required
+                                   class="w-full border p-3 rounded">
 
-                    <!-- KATEGORI -->
+                        </div>
 
-                    <div class="mb-5">
+                        <!-- SATUAN -->
 
-                        <label class="block mb-2 font-semibold">
-                            Kategori
-                        </label>
+                        <div class="mb-8">
 
-                        <select
-                            name="id_kategori"
-                            class="w-full border p-3 rounded">
+                            <label class="block mb-2 font-semibold">
+                                Satuan
+                            </label>
 
-                            <option value="K001"
-                                <%= barang.getId_kategori().equals("K001") ? "selected" : "" %>>
-                                Elektronik
-                            </option>
+                            <select
+                                name="satuan"
+                                class="w-full border p-3 rounded">
 
-                            <option value="K002"
-                                <%= barang.getId_kategori().equals("K002") ? "selected" : "" %>>
-                                Furniture
-                            </option>
+                                <option value="Unit"
+                                        <%= barang.getSatuan().equals("Unit") ? "selected" : ""%>>
+                                    Unit
+                                </option>
 
-                            <option value="K003"
-                                <%= barang.getId_kategori().equals("K003") ? "selected" : "" %>>
-                                ATK
-                            </option>
+                                <option value="Pcs"
+                                        <%= barang.getSatuan().equals("Pcs") ? "selected" : ""%>>
+                                    Pcs
+                                </option>
 
-                        </select>
+                            </select>
 
-                    </div>
+                        </div>
 
-                    <!-- STOK -->
+                        <!-- BUTTON -->
 
-                    <div class="mb-5">
+                        <div class="flex gap-3">
 
-                        <label class="block mb-2 font-semibold">
-                            Stok
-                        </label>
+                            <button type="submit"
+                                    class="bg-rose-600 hover:bg-rose-700 text-white px-6 py-3 rounded">
 
-                        <input type="number"
-                               name="stok"
-                               value="<%= barang.getStok() %>"
-                               required
-                               class="w-full border p-3 rounded">
+                                Simpan Perubahan
 
-                    </div>
+                            </button>
 
-                    <!-- SATUAN -->
+                            <a href="<%=request.getContextPath()%>/BarangController"
+                               class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded">
 
-                    <div class="mb-8">
+                                Kembali
 
-                        <label class="block mb-2 font-semibold">
-                            Satuan
-                        </label>
+                            </a>
 
-                        <select
-                            name="satuan"
-                            class="w-full border p-3 rounded">
+                        </div>
 
-                            <option value="Unit"
-                                <%= barang.getSatuan().equals("Unit") ? "selected" : "" %>>
-                                Unit
-                            </option>
+                    </form>
 
-                            <option value="Pcs"
-                                <%= barang.getSatuan().equals("Pcs") ? "selected" : "" %>>
-                                Pcs
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                    <!-- BUTTON -->
-
-                    <div class="flex gap-3">
-
-                        <button type="submit"
-                                class="bg-rose-600 hover:bg-rose-700 text-white px-6 py-3 rounded">
-
-                            Simpan Perubahan
-
-                        </button>
-
-                        <a href="<%=request.getContextPath()%>/BarangController"
-                           class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded">
-
-                            Kembali
-
-                        </a>
-
-                    </div>
-
-                </form>
+                </div>
 
             </div>
 
         </div>
-
-    </div>
 
     </body>
 </html>

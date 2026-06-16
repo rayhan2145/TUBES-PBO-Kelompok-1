@@ -100,12 +100,18 @@
                             <%= session.getAttribute("username")%>
                         </div>
 
-                        <a href="<%=request.getContextPath()%>/LogoutController"
-                           class="text-white text-2xl hover:text-gray-200">
+                            <form action="<%=request.getContextPath()%>/userController"
+                                  method="post"
+                                  class="inline">
 
-                            <i class="fa-solid fa-right-from-bracket"></i>
+                                <input type="hidden" name="aksi" value="logout">
 
-                        </a>
+                                <button type="submit"
+                                        class="text-white text-2xl hover:text-gray-200 transition duration-200">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </button>
+
+                            </form>
 
                     </div>
 

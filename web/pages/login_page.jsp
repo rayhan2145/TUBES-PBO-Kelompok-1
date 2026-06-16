@@ -5,6 +5,17 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    if (session.getAttribute("idUser") != null
+            && session.getAttribute("username") != null
+            && session.getAttribute("role") != null) {
+
+        response.sendRedirect(
+                request.getContextPath() + "/pages/dashboard_page.jsp"
+        );
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="id">
     <head>
