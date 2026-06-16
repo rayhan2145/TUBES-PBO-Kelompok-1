@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Projects/TUBES-PBO-Kelompok-1/web/pages/reset_password_1_page.jsp</file>
+            <file>file:/D:/Projects/TUBES-PBO-Kelompok-1/web/pages/reset_password_2_page.jsp</file>
+            <file>file:/D:/Projects/TUBES-PBO-Kelompok-1/web/pages/login_page.jsp</file>
             <file>file:/D:/Projects/TUBES-PBO-Kelompok-1/src/java/controller/userController.java</file>
-            <file>file:/D:/Projects/TUBES-PBO-Kelompok-1/src/java/models/User.java</file>
-            <file>file:/D:/Projects/TUBES-PBO-Kelompok-1/src/java/controller/LaporanController.java</file>
-            <file>file:/D:/Projects/TUBES-PBO-Kelompok-1/src/java/controller/KategoriController.java</file>
-            <file>file:/D:/Projects/TUBES-PBO-Kelompok-1/src/java/controller/TransaksiController.java</file>
-            <file>file:/D:/Projects/TUBES-PBO-Kelompok-1/web/META-INF/context.xml</file>
-            <file>file:/D:/Projects/TUBES-PBO-Kelompok-1/nbproject/build-impl.xml~</file>
+            <file>file:/D:/Projects/TUBES-PBO-Kelompok-1/web/pages/register_page.jsp</file>
         </group>
     </open-files>
 </project-private>

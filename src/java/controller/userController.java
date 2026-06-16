@@ -39,6 +39,14 @@ public class userController extends HttpServlet {
                 logout(request, response);
                 break;
 
+            case "cekUsername":
+                cekUsername(request, response);
+                break;
+
+            case "resetPassword":
+                resetPassword(request, response);
+                break;
+
             default:
                 response.sendRedirect("index.jsp");
                 break;
@@ -64,7 +72,7 @@ public class userController extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-       
+
         User userModel = new User();
         User user = userModel.login(username, password);
 
@@ -76,7 +84,7 @@ public class userController extends HttpServlet {
             session.setAttribute("role", user.getRole());
 
             response.sendRedirect(request.getContextPath() + "/DashboardController");
-           } else {          
+        } else {
             response.sendRedirect(request.getContextPath() + "/pages/login_page.jsp?error=1");
         }
     }
@@ -113,5 +121,84 @@ public class userController extends HttpServlet {
         } else {
             response.sendRedirect("index.jsp");
         }
+    }
+
+    private void cekUsername(HttpServletRequest request,
+            HttpServletResponse response) throws IOException {
+
+        String username = request.getParameter("username");
+
+        User model = new User();
+        User user = model.cariUsername(username);
+
+        if (user != null) {
+
+            HttpSession session = request.getSession();
+            session.setAttribute("resetUsername", username);
+
+            response.sendRedirect(
+                    request.getContextPath()
+                    + "/pages/reset_password_2_page.jsp"
+            );
+
+        } else {
+
+            response.sendRedirect(
+                    request.getContextPath()
+                    + "/pages/reset_password_1_page.jsp?error=1"
+            );
+
+        }
+    }
+
+    private void resetPassword(HttpServletRequest request,
+            HttpServletResponse response) throws IOException {
+
+        String passwordBaru = request.getParameter("password");
+        String konfirmasi = request.getParameter("konfirmasi");
+
+        if (!passwordBaru.equals(konfirmasi)) {
+            response.sendRedirect(
+                    request.getContextPath()
+                    + "/pages/reset_password_2_page.jsp?error=password"
+            );
+            return;
+        }
+
+        HttpSession session = request.getSession(false);
+
+        if (session == null
+                || session.getAttribute("resetUsername") == null) {
+
+            response.sendRedirect(
+                    request.getContextPath()
+                    + "/pages/reset_password_1_page.jsp"
+            );
+            return;
+        }
+
+        String username
+                = (String) session.getAttribute("resetUsername");
+
+        User model = new User();
+        User user = model.cariUsername(username);
+
+        if (user != null) {
+
+            // hanya ubah password
+            user.setPassword(passwordBaru);
+
+            // gunakan method update() bawaan
+            user.editUser();
+
+            System.out.println(user.getMessage());
+        }
+
+        session.removeAttribute("resetUsername");
+
+        response.sendRedirect(
+                request.getContextPath()
+                + "/pages/login_page.jsp?reset=success"
+        );
     }
 }
