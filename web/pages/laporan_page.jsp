@@ -22,12 +22,12 @@
         <meta charset="UTF-8">
         <title>Laporan Transaksi</title>
 
-        ```
+       
         <script src="https://cdn.tailwindcss.com"></script>
 
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-        ```
+        
 
     </head>
 
@@ -35,14 +35,14 @@
 
         <div class="w-full bg-white flex min-h-screen">
 
-            ```
+            
             <!-- SIDEBAR -->
 
             <div class="w-[240px] bg-rose-600 text-white flex flex-col">
 
                 <div class="h-[90px] flex items-center justify-center border-b border-rose-400">
                     <h1 class="font-bold text-2xl">
-                        Nama Web
+                        Inventaris
                     </h1>
                 </div>
 
@@ -178,7 +178,7 @@
                 </div>
 
             </div>
-            ```
+            
 
         </div>
 
