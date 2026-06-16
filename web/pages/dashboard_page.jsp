@@ -45,7 +45,7 @@
             <div class="w-[240px] bg-rose-600 text-white flex flex-col">
 
                 <div class="h-[90px] flex items-center justify-center border-b border-rose-400">
-                    <h1 class="font-bold text-2xl">Nama Web</h1>
+                    <h1 class="font-bold text-2xl">Inventaris</h1>
                 </div>
 
                 <div class="flex-1">

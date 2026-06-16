@@ -40,7 +40,7 @@
 
                 <div class="h-[90px] flex items-center justify-center border-b border-rose-400">
                     <h1 class="font-bold text-2xl">
-                        Nama Web
+                        Inventaris
                     </h1>
                 </div>
 
